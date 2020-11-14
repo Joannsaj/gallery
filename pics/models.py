@@ -5,8 +5,8 @@ class Photo(models.Model):
     image = CloudinaryField('image')
     name = models.CharField(max_length =30)
     description = models.TextField()
-    location = models.ForeignKey(Location)
-    category = models.ForeignKey(Category)
+    location = models.ForeignKey(Location, on_delete= models.SET_NULL)
+    category = models.ForeignKey(Category, on_delete= models.CASCADE)
     def __str__(self):
         return self.name
 
