@@ -19,10 +19,30 @@ class Photo(models.Model):
     description = models.TextField()
     location = models.ForeignKey(Location, on_delete= models.SET_NULL, null= True)
     category = models.ForeignKey(Category, on_delete= models.CASCADE, default='')
+
     def __str__(self):
-        return self.name
+        return self.name     
+
+    def save_image(self):
+        self.save
+
+    def delete_image(self): 
+        self.delete
 
     @classmethod
     def images(cls):
         images = cls.objects.all()
-        return images        
+        return images  
+
+    # @classmethod
+    # def update_image(): 
+
+    # @classmethod
+    # def get_image_by_id():
+
+    @classmethod
+    def search_image(cls, search_term):
+        images = cls.objects.filter(name__icontains=search_term)
+        return images
+    # @classmethod
+    # def filter_by_location(location):     
