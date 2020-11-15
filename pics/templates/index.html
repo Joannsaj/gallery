@@ -1,8 +1,17 @@
 {%extends 'base.html'%}
 {% block content %}
-<div class="index">
-    <h1>WELCOME TO PHOTO ALBUM</h1>
-    <h3>A great place to store memories</h3>
-    <button></button>
+<style>
+    a {
+        color: white;
+    }
+</style>
+<div class="container-fluid text-center"
+    style="background-image: url(../../static/images/pexels-photo.jpeg); height: 14cm;">
+    <div>
+        <br><br><br><br><br>
+        <h1 class="display-4">WELCOME TO PHOTO ALBUM</h1>
+        <h3>A great place to store memories</h3>
+        <button class="btn btn-dark"><a href="{% url 'image' %}">PHOTOS</a></button>
+    </div>
 </div>
 {% endblock %}
