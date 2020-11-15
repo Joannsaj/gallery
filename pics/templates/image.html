@@ -23,7 +23,12 @@
     <input type="text" value="{{image.image.url}}" id="myInput">
 
     <!-- The button used to copy the text -->
-    <button onclick="myFunction()">Copy link</button>
+    <div class="tooltip">
+        <button onclick="myFunction()" onmouseout="outFunc()">
+            <span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
+            Copy link
+        </button>
+    </div>
 </div>
 
 {% endblock %}
