@@ -7,11 +7,23 @@ class Location(models.Model):
     def __str__(self):
         return self.location
 
+    def save_location(self):
+        self.save
+
+    def delete_location(self): 
+        self.delete    
+
 class Category(models.Model):    
     category =  models.CharField(max_length =30)
 
     def __str__(self):
         return self.category
+
+    def save_category(self):
+        self.save
+
+    def delete_category(self): 
+        self.delete
 
 class Photo(models.Model):
     image = CloudinaryField('image')
@@ -34,15 +46,19 @@ class Photo(models.Model):
         images = cls.objects.all()
         return images  
 
-    # @classmethod
-    # def update_image(): 
-
-    # @classmethod
-    # def get_image_by_id():
+    @classmethod
+    def update_image(cls, id): 
+        images = cls.objects.filter(id=id).update(image = value)
+        
+    @classmethod
+    def get_image_by_id(cls, id):
+        image = cls.objects.get(pk = id)
 
     @classmethod
     def search_image(cls, search_term):
         images = cls.objects.filter(name__icontains=search_term)
         return images
-    # @classmethod
-    # def filter_by_location(location):     
+
+    @classmethod
+    def filter_by_location(cls,location): 
+       images = cls.objects.filter(location__location= location)
