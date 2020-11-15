@@ -3,21 +3,76 @@
 <div class="container">
 
     <!-- Looping through news   -->
-
+    <br>
     <div class="row">
         {% for item in image %}
 
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
             <img src="{{item.image.url}}" style="width: 300px;" class="img-responsive" alt="Image">
 
+            <!-- Button to Open the Modal -->
+            <button type="button" class="btn-primary" data-toggle="modal" data-target="#myModal">
+                Details
+            </button>
+
+            <!-- The Modal -->
+            <div class="modal" id="myModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">{{item.name}}</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <div class="row">
+                                <img src="{{item.image.url}}" style="width: 450px;" class="img-responsive" alt="">
+                            </div>
+
+                            <div class="row">
+                                <p>{{item.description}}</p>
+                            </div>
+
+                            <div class="row">
+                                <p>{{item.category}}</p>
+                            </div>
+
+                            <input type="text" value="{{item.image.url}}" id="myInput">
+                            <button onclick="myFunction()">Copy text</button>
+
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
 
-    {% empty %}
-    <div class="row">
-        <h2 class="text-center">There are no Photos</h2>
-    </div>
-    {% endfor %}
+        {% empty %}
+        <div class="row">
+            <h2 class="text-center">There are no Photos</h2>
+        </div>
+        {% endfor %}
 
-</div>
-{% endblock %}
+    </div>
+    <script>
+        function myFunction() {
+            /* Get the text field */
+            var copyText = document.getElementById("myInput");
+
+            /* Select the text field */
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+            /* Copy the text inside the text field */
+            document.execCommand("copy");
+        }
+    </script>
+    {% endblock %}

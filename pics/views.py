@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404
+from django.core.exceptions import ObjectDoesNotExist
 from .models import Photo
 
 # Create your views here.
@@ -10,12 +11,12 @@ def display(request):
     image = Photo.images()
     return render(request,'pics.html',{"image": image})    
 
-def get_image(request,image_id):
-    try:
-        image = Photo.objects.get(pk = image_id)
-    except DoesNotExist:
-        raise Http404()
-    return render(request,'image.html',{"image":image})    
+# def get_image(request,image_id):
+#     try:
+#         image = Photo.objects.get(id = image_id)
+#     except ObjectDoesNotExist:
+#         raise Http404()
+#     return render(request,'image.html',{"image":image})    
 
 def search_image(request):  
     if 'picture' in request.GET and request.GET["picture"]:
