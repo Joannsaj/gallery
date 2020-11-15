@@ -47,16 +47,16 @@ class Photo(models.Model):
         return images  
 
     @classmethod
-    def update_image(cls, id): 
-        images = cls.objects.filter(id=id).update(image = value)
-        
+    def update_image(cls, id, image): 
+        images = cls.objects.filter(id=id).update(image = image)
+
     @classmethod
     def get_image_by_id(cls, id):
-        image = cls.objects.get(pk = id)
+        image = cls.objects.get(id = id)
 
     @classmethod
     def search_image(cls, search_term):
-        images = cls.objects.filter(name__icontains=search_term)
+        images = cls.objects.filter(category__category__icontains=search_term)
         return images
 
     @classmethod
