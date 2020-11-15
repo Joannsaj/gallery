@@ -12,7 +12,7 @@ def display(request):
 
 def get_image(request,image_id):
     try:
-        image = Photo.objects.get(id = image_id)
+        image = Photo.objects.get(pk = image_id)
     except DoesNotExist:
         raise Http404()
     return render(request,'image.html',{"image":image})    
